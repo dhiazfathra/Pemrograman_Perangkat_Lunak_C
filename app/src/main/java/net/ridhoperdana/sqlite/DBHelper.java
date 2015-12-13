@@ -12,7 +12,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper{
     private static final int DATABASE_VERSION = 4;
 
-    private static final String DATABASE_NAME = "cruds.db";
+    private static final String DATABASE_NAME = "crudse.db";
 
     public DBHelper(Context context)
     {
@@ -24,8 +24,8 @@ public class DBHelper extends SQLiteOpenHelper{
     {
         String CREATE_TABLE_TUGAS = "CREATE TABLE " + Tugas.TABLE + "(" + Tugas.KEY_ID
                 + " INTEGER PRIMARY KEY AUTOINCREMENT ," + Tugas.KEY_nama + " TEXT, "
-                + Tugas.KEY_tanggalDikasih + " TEXT, " + Tugas.KEY_tanggalDikumpul
-                + " TEXT )";
+                + Tugas.KEY_tanggalDikasih + " TEXT, " + Tugas.KEY_waktuDikasih + " TEXT, " + Tugas.KEY_tanggalDikumpul + " TEXT, " +
+                Tugas.KEY_waktuDikumpul + " TEXT, " + Tugas.KEY_kompleksitas + " NUMBER)";
 
         db.execSQL(CREATE_TABLE_TUGAS);
     }

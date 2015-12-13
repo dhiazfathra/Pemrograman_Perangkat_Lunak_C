@@ -30,7 +30,9 @@ public class TugasRepo {
         values.put(Tugas.KEY_nama, tugas.nama);
         values.put(Tugas.KEY_tanggalDikasih, tugas.tanggalDikasih);
         values.put(Tugas.KEY_tanggalDikumpul, tugas.tanggalDikumpul);
-//        values.put(Tugas.KEY_kompleksitas, tugas.kompleksitas);
+        values.put(Tugas.KEY_waktuDikasih, tugas.waktuDikasih);
+        values.put(Tugas.KEY_tanggalDikumpul, tugas.waktuDikumpul);
+        values.put(Tugas.KEY_kompleksitas, tugas.kompleksitas);
 
         long id_tugas = db.insert(Tugas.TABLE, null, values);
         db.close();
@@ -52,7 +54,7 @@ public class TugasRepo {
         values.put(Tugas.KEY_nama, tugas.nama);
         values.put(Tugas.KEY_tanggalDikasih, tugas.tanggalDikasih);
         values.put(Tugas.KEY_tanggalDikumpul, tugas.tanggalDikumpul);
-//        values.put(Tugas.KEY_kompleksitas, tugas.kompleksitas);
+        values.put(Tugas.KEY_kompleksitas, tugas.kompleksitas);
 
         db.update(Tugas.TABLE, values, Tugas.KEY_ID + "= ?", new String[]{String.valueOf(tugas.id_tugas)});
 
@@ -64,7 +66,7 @@ public class TugasRepo {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery = "SELECT " + Tugas.KEY_ID + "," +
                 Tugas.KEY_nama + "," + Tugas.KEY_tanggalDikasih +
-                "," + Tugas.KEY_tanggalDikumpul + " FROM " + Tugas.TABLE;
+                "," + Tugas.KEY_tanggalDikumpul + "," + Tugas.KEY_waktuDikasih + "," + Tugas.KEY_waktuDikumpul + "," + Tugas.KEY_kompleksitas + " FROM " + Tugas.TABLE;
 
         ArrayList<HashMap<String, String>> tugaslist = new ArrayList<HashMap<String, String>>();
 
@@ -94,7 +96,7 @@ public class TugasRepo {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery = "SELECT " + Tugas.KEY_ID + "," +
                 Tugas.KEY_nama + "," + Tugas.KEY_tanggalDikasih + "," +
-                Tugas.KEY_tanggalDikumpul + " FROM " + Tugas.TABLE + " WHERE " + Tugas.KEY_ID + "=?";
+                Tugas.KEY_tanggalDikumpul + "," + Tugas.KEY_waktuDikasih + "," + Tugas.KEY_waktuDikumpul + "," + Tugas.KEY_kompleksitas + " FROM " + Tugas.TABLE + " WHERE " + Tugas.KEY_ID + "=?";
 
         int iCount = 0;
         Tugas tugas = new Tugas();
@@ -108,7 +110,9 @@ public class TugasRepo {
                 tugas.nama = cursor.getString(cursor.getColumnIndex(Tugas.KEY_nama));
                 tugas.tanggalDikasih = cursor.getString(cursor.getColumnIndex(Tugas.KEY_tanggalDikasih));
                 tugas.tanggalDikumpul = cursor.getString(cursor.getColumnIndex(Tugas.KEY_tanggalDikumpul));
-//                tugas.kompleksitas = cursor.getInt(cursor.getColumnIndex(Tugas.KEY_kompleksitas));
+                tugas.waktuDikasih = cursor.getString(cursor.getColumnIndex(Tugas.KEY_waktuDikasih));
+                tugas.waktuDikumpul = cursor.getString(cursor.getColumnIndex(Tugas.KEY_waktuDikumpul));
+                tugas.kompleksitas = cursor.getInt(cursor.getColumnIndex(Tugas.KEY_kompleksitas));
 
             }
             while (cursor.moveToNext());

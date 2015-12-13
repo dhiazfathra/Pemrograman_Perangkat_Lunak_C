@@ -12,6 +12,8 @@ public class Tugas {
     public static final String KEY_nama = "nama";
     public static final String KEY_tanggalDikasih = "tanggalDikasih";
     public static final String KEY_tanggalDikumpul = "tanggalDikumpul";
+    public static final String KEY_waktuDikasih = "waktuDikasih";
+    public static final String KEY_waktuDikumpul = "waktuDikumpul";
     public static final String KEY_kompleksitas = "kompleksitas";
 
     // property help us to keep data
@@ -19,5 +21,7 @@ public class Tugas {
     public String nama;
     public String tanggalDikasih;
     public String tanggalDikumpul;
+    public String waktuDikasih;
+    public String waktuDikumpul;
     public int kompleksitas;
 }

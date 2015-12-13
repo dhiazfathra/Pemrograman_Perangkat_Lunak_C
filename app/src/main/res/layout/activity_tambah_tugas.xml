@@ -65,7 +65,7 @@
         android:layout_below="@+id/judul_diberikan"
         android:layout_alignStart="@+id/judul_diberikan"
         android:layout_alignEnd="@+id/judul_diberikan"
-        android:text="Tanggal diberikan"
+        android:text="Tanggal Diberikan"
         android:textColor="@color/common_signin_btn_dark_text_disabled"/>
 
     <EditText
@@ -124,7 +124,35 @@
             android:textSize="18dp"
             android:layout_margin="10dp"
             android:id="@+id/judul_kompleksitas" />
+
+
     </LinearLayout>
+    <RadioGroup
+        android:id="@+id/grupKompleksitas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        android:layout_below="@id/linearLayout2">
+
+        <RadioButton
+            android:id="@+id/mudah"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Mudah " />
+
+        <RadioButton
+            android:id="@+id/biasa"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Biasa" />
+
+        <RadioButton
+            android:id="@+id/sulit"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Sulit" />
+    </RadioGroup>
 
     <Button
         android:layout_width="wrap_content"

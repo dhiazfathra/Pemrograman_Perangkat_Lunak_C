@@ -85,6 +85,4 @@ public class MainActivity extends ListActivity implements android.view.View.OnCl
             Toast.makeText(this, "Tidak ada tugas", Toast.LENGTH_SHORT).show();
         }
     }
-
-
 }
