@@ -39,9 +39,9 @@
             android:orientation="horizontal">
         </LinearLayout>
         <TextView
+            android:id="@+id/total_tugas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5 Tugas belum dikerjakan"
             android:textColor="#ffffff"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
@@ -66,12 +66,21 @@
             />
     </LinearLayout>
 
-    <Button
+    <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Tambah"-->
+        <!--android:id="@+id/tombol_tambah_tugas"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_marginStart="233dp" />-->
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/tombol_tambah_tugas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tambah"
-        android:id="@+id/tombol_tambah_tugas"
+        android:layout_marginStart="260dp"
+        android:src="@android:drawable/ic_input_add"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="233dp" />
+        android:layout_gravity="right"/>
 
 </RelativeLayout>

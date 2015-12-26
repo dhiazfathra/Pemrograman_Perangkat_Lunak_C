@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -27,14 +28,16 @@ public class TugasRepo {
     {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
+
         values.put(Tugas.KEY_nama, tugas.nama);
         values.put(Tugas.KEY_tanggalDikasih, tugas.tanggalDikasih);
         values.put(Tugas.KEY_tanggalDikumpul, tugas.tanggalDikumpul);
         values.put(Tugas.KEY_waktuDikasih, tugas.waktuDikasih);
-        values.put(Tugas.KEY_tanggalDikumpul, tugas.waktuDikumpul);
+        values.put(Tugas.KEY_waktuDikumpul, tugas.waktuDikumpul);
         values.put(Tugas.KEY_kompleksitas, tugas.kompleksitas);
-
+        values.put(Tugas.KEY_status, String.valueOf(1));
         long id_tugas = db.insert(Tugas.TABLE, null, values);
+
         db.close();
         return (int) id_tugas;
     }
@@ -46,6 +49,20 @@ public class TugasRepo {
         db.close();
     }
 
+    public void update_status(Tugas tugas)
+    {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put("status", tugas.status);
+        int nilai = db.update(Tugas.TABLE, values, Tugas.KEY_ID + "= ?", new String[]{String.valueOf(tugas.id_tugas)});
+
+        if(nilai==1) System.out.println("sukses update status");
+        else System.out.println("gagal update status");
+
+        db.close();
+    }
+
     public void update(Tugas tugas)
     {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -54,10 +71,15 @@ public class TugasRepo {
         values.put(Tugas.KEY_nama, tugas.nama);
         values.put(Tugas.KEY_tanggalDikasih, tugas.tanggalDikasih);
         values.put(Tugas.KEY_tanggalDikumpul, tugas.tanggalDikumpul);
+        values.put(Tugas.KEY_waktuDikasih, tugas.waktuDikasih);
+        values.put(Tugas.KEY_waktuDikumpul, tugas.waktuDikumpul);
         values.put(Tugas.KEY_kompleksitas, tugas.kompleksitas);
+        values.put(Tugas.KEY_status, tugas.status);
 
-        db.update(Tugas.TABLE, values, Tugas.KEY_ID + "= ?", new String[]{String.valueOf(tugas.id_tugas)});
-
+        Log.d("update-->id--->", String.valueOf(tugas.id_tugas));
+        int nilai = db.update(Tugas.TABLE, values, Tugas.KEY_ID + "= ?", new String[]{String.valueOf(tugas.id_tugas)});
+        if(nilai==1) System.out.println("sukses");
+        else System.out.println("gagal");
         db.close();
     }
 
@@ -66,7 +88,9 @@ public class TugasRepo {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery = "SELECT " + Tugas.KEY_ID + "," +
                 Tugas.KEY_nama + "," + Tugas.KEY_tanggalDikasih +
-                "," + Tugas.KEY_tanggalDikumpul + "," + Tugas.KEY_waktuDikasih + "," + Tugas.KEY_waktuDikumpul + "," + Tugas.KEY_kompleksitas + " FROM " + Tugas.TABLE;
+                "," + Tugas.KEY_tanggalDikumpul + "," + Tugas.KEY_waktuDikasih + ","
+                + Tugas.KEY_waktuDikumpul + "," + Tugas.KEY_kompleksitas + ","
+                + Tugas.KEY_status + " FROM " + Tugas.TABLE;
 
         ArrayList<HashMap<String, String>> tugaslist = new ArrayList<HashMap<String, String>>();
 
@@ -76,11 +100,14 @@ public class TugasRepo {
         {
             do {
                 HashMap<String, String> tugas = new HashMap<String, String>();
-
                 tugas.put("id", cursor.getString(cursor.getColumnIndex(Tugas.KEY_ID)));
                 tugas.put("nama", cursor.getString(cursor.getColumnIndex(Tugas.KEY_nama)));
-                Log.d("log id", cursor.getString(cursor.getColumnIndex(Tugas.KEY_ID)));
-                Log.d("log nama", cursor.getString(cursor.getColumnIndex(Tugas.KEY_nama)));
+                tugas.put("tanggalDikasih", cursor.getString(cursor.getColumnIndex(Tugas.KEY_tanggalDikasih)));
+                tugas.put("tanggalDikumpul", cursor.getString(cursor.getColumnIndex(Tugas.KEY_tanggalDikumpul)));
+                tugas.put("waktuDikasih", cursor.getString(cursor.getColumnIndex(Tugas.KEY_waktuDikasih)));
+                tugas.put("waktuDikumpul", cursor.getString(cursor.getColumnIndex(Tugas.KEY_waktuDikumpul)));
+                tugas.put("kompleksitas", cursor.getString(cursor.getColumnIndex(Tugas.KEY_kompleksitas)));
+                tugas.put("status", cursor.getString(cursor.getColumnIndex(Tugas.KEY_status)));
                 tugaslist.add(tugas);
             }
             while(cursor.moveToNext());
@@ -96,7 +123,9 @@ public class TugasRepo {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery = "SELECT " + Tugas.KEY_ID + "," +
                 Tugas.KEY_nama + "," + Tugas.KEY_tanggalDikasih + "," +
-                Tugas.KEY_tanggalDikumpul + "," + Tugas.KEY_waktuDikasih + "," + Tugas.KEY_waktuDikumpul + "," + Tugas.KEY_kompleksitas + " FROM " + Tugas.TABLE + " WHERE " + Tugas.KEY_ID + "=?";
+                Tugas.KEY_tanggalDikumpul + "," + Tugas.KEY_waktuDikasih + "," +
+                Tugas.KEY_waktuDikumpul + "," + Tugas.KEY_kompleksitas + "," + Tugas.KEY_status + " FROM " +
+                Tugas.TABLE + " WHERE " + Tugas.KEY_ID + "=?";
 
         int iCount = 0;
         Tugas tugas = new Tugas();
@@ -113,7 +142,13 @@ public class TugasRepo {
                 tugas.waktuDikasih = cursor.getString(cursor.getColumnIndex(Tugas.KEY_waktuDikasih));
                 tugas.waktuDikumpul = cursor.getString(cursor.getColumnIndex(Tugas.KEY_waktuDikumpul));
                 tugas.kompleksitas = cursor.getInt(cursor.getColumnIndex(Tugas.KEY_kompleksitas));
-
+                tugas.status = cursor.getInt(cursor.getColumnIndex(Tugas.KEY_status));
+                System.out.println(tugas.nama + "-- nama get by id");
+                System.out.println(tugas.tanggalDikasih + "-- TGL DIKASIH");
+                System.out.println(tugas.tanggalDikumpul + "-- TGL DIKUMPUL");
+                System.out.println(tugas.waktuDikasih + "-- WAKTU DIKASIH");
+                System.out.println(tugas.waktuDikumpul + "-- WAKTU DIKUMPUL");
+                System.out.println(tugas.kompleksitas + "-- KOMPLEKSITAS");
             }
             while (cursor.moveToNext());
         }
