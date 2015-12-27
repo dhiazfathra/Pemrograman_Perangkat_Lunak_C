@@ -82,6 +82,8 @@ public class DetilTugas extends AppCompatActivity {
             editTextKompleksitas.setText("Mudah");
         }
 //        editTextKompleksitas.setText(String.valueOf(tugas.kompleksitas));
-        statusTugas.setText(String.valueOf(tugas.status));
+
+//        statusTugas.setText(String.valueOf(tugas.status));
+
     }
 }
