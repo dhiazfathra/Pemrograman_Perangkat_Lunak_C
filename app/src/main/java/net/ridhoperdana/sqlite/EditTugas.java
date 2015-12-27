@@ -45,7 +45,7 @@ public class EditTugas extends ActionBarActivity implements android.view.View.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_tugas);
-        dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+        dateFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
         btnSave = (Button) findViewById(R.id.tambah_tugas);
         editTextNama = (EditText) findViewById(R.id.judul_tugas);
         editTextDiberikan = (EditText) findViewById(R.id.tanggal_diberikan);
@@ -95,7 +95,7 @@ public class EditTugas extends ActionBarActivity implements android.view.View.On
                     String input  = rb.getText().toString();
                     if(input.equals(mudah))
                     {
-                        kesulitan_int = 1;
+                        kesulitan_int = 3;
                     }
                     else if(input.equals(biasa))
                     {
@@ -103,7 +103,7 @@ public class EditTugas extends ActionBarActivity implements android.view.View.On
                     }
                     else if(input.equals(sulit))
                     {
-                        kesulitan_int = 3;
+                        kesulitan_int = 1;
                     }
                 }
             }
@@ -198,9 +198,11 @@ public class EditTugas extends ActionBarActivity implements android.view.View.On
                 System.out.println(tugas.tanggalDikumpul + "-- tanggal dikumpul");
                 System.out.println(tugas.waktuDikasih + "-- waktu dikasih");
                 System.out.println(tugas.waktuDikumpul + "-- waktu dikumpul");
+                finish();
             } else {
                 repo.update(tugas);
                 Toast.makeText(this, "Deskripsi tugas telah diperbaharui", Toast.LENGTH_SHORT).show();
+                finish();
             }
         }
     }

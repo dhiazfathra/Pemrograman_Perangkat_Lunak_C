@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 /**
  * Created by RIDHO on 12/5/2015.
@@ -83,23 +83,24 @@ public class TugasRepo {
         db.close();
     }
 
-    public ArrayList<HashMap<String, String>> getTugasList()
+    public ArrayList<LinkedHashMap<String, String>> getTugasList()
     {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery = "SELECT " + Tugas.KEY_ID + "," +
                 Tugas.KEY_nama + "," + Tugas.KEY_tanggalDikasih +
                 "," + Tugas.KEY_tanggalDikumpul + "," + Tugas.KEY_waktuDikasih + ","
                 + Tugas.KEY_waktuDikumpul + "," + Tugas.KEY_kompleksitas + ","
-                + Tugas.KEY_status + " FROM " + Tugas.TABLE;
+                + Tugas.KEY_status + " FROM " + Tugas.TABLE +
+                " ORDER BY " + Tugas.KEY_tanggalDikumpul + "," + Tugas.KEY_waktuDikumpul + "," + Tugas.KEY_kompleksitas;
 
-        ArrayList<HashMap<String, String>> tugaslist = new ArrayList<HashMap<String, String>>();
+        ArrayList<LinkedHashMap<String, String>> tugaslist = new ArrayList<LinkedHashMap<String, String>>();
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         if(cursor.moveToFirst())
         {
             do {
-                HashMap<String, String> tugas = new HashMap<String, String>();
+                LinkedHashMap<String, String> tugas = new LinkedHashMap<String, String>();
                 tugas.put("id", cursor.getString(cursor.getColumnIndex(Tugas.KEY_ID)));
                 tugas.put("nama", cursor.getString(cursor.getColumnIndex(Tugas.KEY_nama)));
                 tugas.put("tanggalDikasih", cursor.getString(cursor.getColumnIndex(Tugas.KEY_tanggalDikasih)));

@@ -54,7 +54,7 @@ public class DetilTugas extends AppCompatActivity {
 
         editTextKompleksitas = (EditText) findViewById(R.id.isi_kompleksitas);
 
-        statusTugas = (EditText) findViewById(R.id.status_tugas);
+//        statusTugas = (EditText) findViewById(R.id.status_tugas);
 
         Intent intent = getIntent();
         _id_tugas = intent.getIntExtra("id_tugas", 0);
@@ -63,12 +63,25 @@ public class DetilTugas extends AppCompatActivity {
         Tugas tugas = new Tugas();
         tugas = repo.getTugasById(_id_tugas);
 
+
         editTextNama.setText(tugas.nama);
         editTextDikumpulkan.setText(tugas.tanggalDikumpul);
         editTextDiberikan.setText(tugas.tanggalDikasih);
         waktuDiberikan.setText(tugas.waktuDikasih);
         waktuDikumpulkan.setText(tugas.waktuDikumpul);
-        editTextKompleksitas.setText(String.valueOf(tugas.kompleksitas));
+        if(tugas.kompleksitas==0)
+        {
+            editTextKompleksitas.setText("Sulit");
+        }
+        else if(tugas.kompleksitas==1)
+        {
+            editTextKompleksitas.setText("Biasa");
+        }
+        else if(tugas.kompleksitas==2)
+        {
+            editTextKompleksitas.setText("Mudah");
+        }
+//        editTextKompleksitas.setText(String.valueOf(tugas.kompleksitas));
         statusTugas.setText(String.valueOf(tugas.status));
     }
 }
