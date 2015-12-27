@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="net.ridhoperdana.sqlite.DetilTugas">
+    tools:context="net.ridhoperdana.sqlite.Detil_Tugas">
 
     <LinearLayout
         android:orientation="vertical"
@@ -141,14 +141,6 @@
         android:layout_alignStart="@+id/linearLayout2"
         android:layout_alignEnd="@+id/linearLayout2"
         android:editable="false"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="status"
-        android:id="@+id/status_tugas"
-        android:layout_alignBottom="@+id/tugas_judul"
-        android:layout_toEndOf="@+id/tugas_id" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/tombol_edit_tugas"

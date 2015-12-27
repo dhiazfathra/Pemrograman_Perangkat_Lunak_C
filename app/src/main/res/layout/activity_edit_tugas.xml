@@ -3,7 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="net.ridhoperdana.sqlite.editTugas">
+    tools:context="net.ridhoperdana.sqlite.Edit_Tugas">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView"></ScrollView>
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -20,6 +24,8 @@
             android:textSize="20dp"
             android:layout_margin="10dp"
             android:textAlignment="viewEnd"/>
+
+
     </LinearLayout>
 
     <EditText

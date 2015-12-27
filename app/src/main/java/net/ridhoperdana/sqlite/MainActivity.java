@@ -17,7 +17,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class MainActivity extends ListActivity implements android.view.View.OnClickListener{
 
@@ -29,7 +29,7 @@ public class MainActivity extends ListActivity implements android.view.View.OnCl
     Tugas tugas, tugass;
 
     TugasRepo repo;
-    ArrayList<HashMap<String, String>> studentList;
+    ArrayList<LinkedHashMap<String, String>> studentList;
 
     @Override
     public void onClick(View view) {
@@ -52,9 +52,9 @@ public class MainActivity extends ListActivity implements android.view.View.OnCl
         ListView lv = getListView();
         View x = lv.getChildAt(2);
 
-        ArrayList<HashMap<String, String>> list_semua = repo.getTugasList();
+        ArrayList<LinkedHashMap<String, String>> list_semua = repo.getTugasList();
         int count = 0;
-        for(HashMap<String, String> res : list_semua)
+        for(LinkedHashMap<String, String> res : list_semua)
         {
             System.out.println("masukin ke perulangan-----ini bisa masuk------");
             if(Integer.parseInt(res.get("status"))==1)

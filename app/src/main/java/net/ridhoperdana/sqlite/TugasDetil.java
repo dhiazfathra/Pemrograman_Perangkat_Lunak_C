@@ -73,7 +73,7 @@ public class TugasDetil extends ActionBarActivity implements android.view.View.O
         setContentView(R.layout.activity_tambah_tugas);
 
 
-        dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+        dateFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
         btnSave = (Button) findViewById(R.id.tambah_tugas);
 //        btnDelete = (Button) findViewById(R.id.btnDelete);
 //        btnClose = (Button) findViewById(R.id.btnClose);
@@ -142,7 +142,7 @@ public class TugasDetil extends ActionBarActivity implements android.view.View.O
 //                    System.out.println(input);
                     if(input.equals(mudah))
                     {
-                        kesulitan_int = 1;
+                        kesulitan_int = 3;
                     }
                     else if(input.equals(biasa))
                     {
@@ -150,7 +150,7 @@ public class TugasDetil extends ActionBarActivity implements android.view.View.O
                     }
                     else if(input.equals(sulit))
                     {
-                        kesulitan_int = 3;
+                        kesulitan_int = 1;
                     }
                 }
             }
@@ -259,6 +259,7 @@ public class TugasDetil extends ActionBarActivity implements android.view.View.O
             } else {
                 repo.update(tugas);
                 Toast.makeText(this, "Deskripsi tugas telah diperbaharui", Toast.LENGTH_SHORT).show();
+                finish();
             }
         }
     }
